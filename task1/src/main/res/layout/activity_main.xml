@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+     <FrameLayout
+                android:id="@+id/green"
+                android:background="#00FA9A"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:layout_gravity="center"
+                android:layout_weight="1">
+        <GridLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:columnCount="2"
+            android:rowCount="2"
+            android:layout_gravity="center"  >
+            <Button android:text="1" />
+            <Button android:text="2" />
+            <Button android:text="3" />
+            <Button android:text="4" />
+        </GridLayout>
+     </FrameLayout>
+
+      <FrameLayout
+                android:id="@+id/purpl"
+                app:layout_constraintTop_toBottomOf="@id/green"
+                android:background="#FF69B4"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:layout_gravity="center"
+                android:layout_weight="1">
+        <GridLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:columnCount="2"
+            android:rowCount="2"
+            android:layout_gravity="center"    >
+            <Button android:text="1" />
+            <Button android:text="2" />
+            <Button android:text="3" />
+            <Button android:text="4" />
+        </GridLayout>
+      </FrameLayout>
+
+</android.support.constraint.ConstraintLayout>
