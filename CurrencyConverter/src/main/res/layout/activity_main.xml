@@ -76,15 +76,23 @@
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
         app:layout_constraintTop_toBottomOf="@+id/tv4" />
+    <TextView
+        android:id="@+id/tv5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:text="Курс"
+        app:layout_constraintTop_toBottomOf="@+id/sp2"
+        tools:ignore="MissingConstraints" />
 
     <RadioGroup
         android:id="@+id/select"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintLeft_toLeftOf="parent"
         android:layout_margin="5dp"
-        app:layout_constraintTop_toBottomOf="@+id/sp2"  >
+        app:layout_constraintTop_toBottomOf="@+id/tv5"  >
     <RadioButton
         android:id="@+id/cb"
         android:layout_width="wrap_content"

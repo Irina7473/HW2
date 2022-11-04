@@ -41,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
         sp1 = findViewById(R.id.sp1);
         sp2 = findViewById(R.id.sp2);
 
+        //Упростить адаптер, читать в него сразу из списка валют их наименования
         // Создаем адаптер ArrayAdapter с помощью стандартной разметки элемета spinner
         ArrayAdapter<String> adapter = new ArrayAdapter <String> (this, android.R.layout.simple_spinner_item, currencySP);
         // Определяем разметку для использования при выборе элемента
@@ -64,26 +65,22 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public  void onButtonClicked(View view){
-        int value = Integer.parseInt(number.getText().toString());
+        // показывать курс обмена до рассчета
+        double value = Integer.parseInt(number.getText().toString());
         MainCurrency currency1 = currency.get(sp1.getSelectedItemPosition());
         MainCurrency currency2 = currency.get(sp2.getSelectedItemPosition());
         float rateK, res;
         if (type!="") {
-            //rateK = currency1.Conversion(currency2, type);
-            rateK = currency2.CB / currency1.CB;
-            res = value * rateK;
+            rateK = currency1.Conversion(currency2, type);
+            res = (float) (value * rateK);
             rate.setText(String.valueOf(rateK));
-            result.setText(String.valueOf(res));
+            result.setText(String.format("%.2f",res));
         }
 
     }
 
     public String onRadioButtonClicked(View view) {
-
         boolean checked = ((RadioButton) view).isChecked();
-        if (checked) type = ((RadioButton) view).getText().toString();
-
-        /*// Получаем нажатый переключатель
         switch(view.getId()) {
             case R.id.cb:
                 if (checked) type = "cb";
@@ -92,10 +89,9 @@ public class MainActivity extends AppCompatActivity {
                 if (checked) type = "buy";
                 break;
             case R.id.sale:
-                if (checked) type = "buy";
+                if (checked) type = "sale";
                 break;
-        }*/
-
+        }
         return  type;
     }
 

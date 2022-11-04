@@ -24,13 +24,13 @@ public class MainCurrency {
         float rate = 1;
         switch(type) {
             case "cb":
-                rate=currency.CB/this.CB;
+                rate=(this.CB/this.Nominal)/(currency.CB/ currency.Nominal);
                 break;
             case "buy":
-                rate=currency.Buy/this.Buy;
+                rate=(this.Buy/this.Nominal)/(currency.Sale/ currency.Nominal);
                 break;
             case "sale":
-                rate=currency.Sale/this.Sale;
+                rate=(this.Sale/this.Nominal)/(currency.Buy/ currency.Nominal);
                 break;
         }
         return  rate;
