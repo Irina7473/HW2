@@ -13,7 +13,7 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "HW2"
-include ':task7'
+include ':CurrencyConverter'
 include ':task1'
 include ':task2'
 include ':task3'

@@ -10,10 +10,10 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/CurrencyConverter" />
             <option value="$PROJECT_DIR$/task1" />
             <option value="$PROJECT_DIR$/task2" />
             <option value="$PROJECT_DIR$/task3" />
-            <option value="$PROJECT_DIR$/task7" />
           </set>
         </option>
       </GradleProjectSettings>
