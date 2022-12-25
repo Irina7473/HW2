@@ -1,8 +1,11 @@
 package space.ten.hw2;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -42,11 +45,16 @@ public class MainActivity extends AppCompatActivity {
         sp2 = findViewById(R.id.sp2);
 
         //Упростить адаптер, читать в него сразу из списка валют их наименования
+        //Сейчас не помещается на экран больше 6 единиц списка
         // Создаем адаптер ArrayAdapter с помощью стандартной разметки элемета spinner
         ArrayAdapter<String> adapter = new ArrayAdapter <String> (this, android.R.layout.simple_spinner_item, currencySP);
         // Определяем разметку для использования при выборе элемента
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         // Применяем адаптер к элементу spinner
+        sp1.setAdapter(adapter);
+        sp2.setAdapter(adapter);
+
+        //ArrayAdapter<MainCurrency> adapter = new MainCurAdapter(this);
         sp1.setAdapter(adapter);
         sp2.setAdapter(adapter);
 
@@ -66,13 +74,14 @@ public class MainActivity extends AppCompatActivity {
 
     public  void onButtonClicked(View view){
         // показывать курс обмена до рассчета
-        double value = Integer.parseInt(number.getText().toString());
+        // валидация -запретить ввод числа, кроме цифр и перевода строки и тд
+        float value = Integer.parseInt(number.getText().toString());
         MainCurrency currency1 = currency.get(sp1.getSelectedItemPosition());
         MainCurrency currency2 = currency.get(sp2.getSelectedItemPosition());
         float rateK, res;
         if (type!="") {
             rateK = currency1.Conversion(currency2, type);
-            res = (float) (value * rateK);
+            res = value * rateK;
             rate.setText(String.valueOf(rateK));
             result.setText(String.format("%.2f",res));
         }
@@ -104,6 +113,28 @@ public class MainActivity extends AppCompatActivity {
         currency.add(new MainCurrency("KZT", "Казахстанских тенге", 100, 13.35F, 13.50F, 13.20F));
         currency.add(new MainCurrency("TRY", "Турецких лир", 10, 33.30F, 33.50F, 33.20F));
         for (MainCurrency c: currency) currencySP.add(c.Name);
+    }
+
+    private class MainCurAdapter extends ArrayAdapter<MainCurrency> {
+
+        public MainCurAdapter(Context context) {
+            super(context, android.R.layout.simple_spinner_item, currency);
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            MainCurrency cur = getItem(position);
+
+            if (convertView == null) {
+                convertView = LayoutInflater.from(getContext())
+                        .inflate(android.R.layout.simple_spinner_item, null);
+            }
+            ((TextView) convertView.findViewById(android.R.id.text1))
+                    .setText(cur.CharCode);
+            ((TextView) convertView.findViewById(android.R.id.text2))
+                    .setText(cur.Name);
+            return convertView;
+        }
     }
 
 }
